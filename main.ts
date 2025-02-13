@@ -104,7 +104,7 @@
         checkbox.checked = student.handedInOnTime;
   
         container.appendChild(checkbox);
-        
+
         const listSelector = student.handedInOnTime ? "ul#passedstudents" : "ul#failedstudents";
         const listOfStudents = document.querySelector(listSelector);
 
@@ -118,14 +118,9 @@
     Exemplet under löser problemet, men inte speciellt bra. Hur kan man göra istället?
     */
   function concatenateStrings() {
-    let result = "";
-    result += "Lorem";
-    result += "ipsum";
-    result += "dolor";
-    result += "sit";
-    result += "amet";
-  
-    return result;
+    const words = ["Lorem", "ipsum", "dolor", "sit", "amet"];
+    
+    return words.join(", ");
   }
   
   /* 
