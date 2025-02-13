@@ -98,25 +98,17 @@
     */
   function presentStudents(students: Student[]) {
     for (const student of students) {
-      if (student.handedInOnTime) {
-        let container = document.createElement("div");
-        let checkbox = document.createElement("input");
+        const container = document.createElement("div");
+        const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.checked = true;
+        checkbox.checked = student.handedInOnTime;
   
         container.appendChild(checkbox);
-        let listOfStudents = document.querySelector("ul#passedstudents");
+        
+        const listSelector = student.handedInOnTime ? "ul#passedstudents" : "ul#failedstudents";
+        const listOfStudents = document.querySelector(listSelector);
+
         listOfStudents?.appendChild(container);
-      } else {
-        let container = document.createElement("div");
-        let checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.checked = false;
-  
-        container.appendChild(checkbox);
-        let listOfStudents = document.querySelector("ul#failedstudents");
-        listOfStudents?.appendChild(container);
-      }
     }
   }
   
