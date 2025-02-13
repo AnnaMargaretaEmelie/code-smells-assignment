@@ -49,21 +49,26 @@
     */
   
   class Temp {
-    constructor(public q: string, public where: Date, public v: number) {}
+    constructor(
+      public city: string,
+      public date: Date,
+      public temperature: number
+    ) {}
   }
-  
-  function averageWeeklyTemperature(heights: Temp[]) {
-    let r = 0;
-  
-    for (let who = 0; who < heights.length; who++) {
-      if (heights[who].q === "Stockholm") {
-        if (heights[who].where.getTime() > Date.now() - 604800000) {
-          r += heights[who].v;
-        }
+
+  function averageWeeklyTemperature(temps: Temp[]): number {
+    let sum = 0;
+    let count = 0;
+    const oneWeekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000; 
+
+    for(const temp of temps) {
+      if (temp.city === "Stockholm" && temp.date.getTime() > oneWeekAgo) {
+        sum += temp.temperature;
+        count++;
       }
     }
-  
-    return r / 7;
+
+    return count > 0 ? sum / count : 0;
   }
   
   /*
@@ -74,23 +79,16 @@
   function showProduct(
     name: string,
     price: number,
-    amount: number,
-    description: string,
     image: string,
     parent: HTMLElement
   ) {
-    let container = document.createElement("div");
-    let title = document.createElement("h4");
-    let pris = document.createElement("strong");
-    let imageTag = document.createElement("img");
-  
-    title.innerHTML = name;
-    pris.innerHTML = price.toString();
-    imageTag.src = image;
-  
-    container.appendChild(title);
-    container.appendChild(imageTag);
-    container.appendChild(pris);
+    const container = document.createElement("div");
+
+    container.innerHTML = `
+    <h4>${name}</h4>
+    <img src="${image}" alt="${name}">
+    <strong>${price.toString()}</strong>
+    `;
     parent.appendChild(container);
   }
   
