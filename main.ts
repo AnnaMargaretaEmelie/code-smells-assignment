@@ -5,13 +5,9 @@
   */
 
   function getLength(jumpings: number[]): number {
-    let totalNumber = 0;
-  
-    totalNumber = jumpings.reduce(
-      (jumpDistanceSoFar, currentJump) => jumpDistanceSoFar + currentJump
+    return jumpings.reduce(
+      (jumpDistanceSoFar, currentJump) => jumpDistanceSoFar + currentJump, 0
     );
-  
-    return totalNumber;
   }
   
   /*
@@ -27,13 +23,8 @@
   }
   
   function getStudentStatus(student: Student): string {
-    student.passed =
-      student.name == "Sebastian"
-        ? student.handedInOnTime
-          ? true
-          : false
-        : false;
-  
+    student.passed = student.name == "Sebastian" && student.handedInOnTime;
+          
     if (student.passed) {
       return "VG";
     } else {
@@ -41,6 +32,17 @@
     }
   }
   
+// Men om någon mer än Sebastian ska kunna bli godkänd: 
+
+// function getStudentStatus(student: Student): string {
+//   if (student.handedInOnTime) {
+//     return "VG";
+//   }
+//   return "IG";
+// }
+
+
+
   /*
     3. Variabelnamn är viktiga. Kika igenom följande kod och gör om och rätt.
     Det finns flera code smells att identifiera här. Vissa är lurigare än andra.
